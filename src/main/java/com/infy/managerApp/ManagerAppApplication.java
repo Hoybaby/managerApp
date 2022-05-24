@@ -8,6 +8,7 @@ public class ManagerAppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ManagerAppApplication.class, args);
+		System.out.println(org.hibernate.Version.getVersionString());
 	}
 
 }
