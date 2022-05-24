@@ -1,5 +1,6 @@
 package com.infy.managerApp.service;
 
+import com.infy.managerApp.exception.UserNotFoundException;
 import com.infy.managerApp.model.Employee;
 import com.infy.managerApp.repo.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,8 @@ public class EmployeeService {
     }
 
     public Employee findEmployeeById(Long id) {
-        return employeeRepo.findEmployeeById(id);
+        return employeeRepo.findEmployeeById(id)
+                .orElseThrow(() -> new UserNotFoundException("User By id" + id + "not found"));
     }
 
 
