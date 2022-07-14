@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
@@ -45,9 +46,10 @@ public class EmployeeResource {
         return new ResponseEntity<>(updateEmployee, HttpStatus.OK );
     }
 
-    @DeleteMapping("/delete{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable("id") Long id) {
+    @Transactional
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteEmployee(@PathVariable("id") Long id) {
         employeeService.deleteEmployee(id);
-        return new ResponseEntity<>(HttpStatus.OK );
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
